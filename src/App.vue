@@ -1,32 +1,67 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/#/subreddits">
+          Useddit
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <div class="login-button" v-if="!isLoggedIn">
+                <a class="button is-primary" @click="login()">
+                  <strong>Login with Google</strong>
+                </a>
+              </div>
+
+              <div class="avatar-container" v-if="isLoggedIn">
+                <div class="avatar">
+                  <span>
+                    <figure>
+                      <img class="avatar-img" :src="user.image" alt="avatar" />
+                    </figure>
+                  </span>
+                </div>
+                <div class="logout-button">
+                  <a class="button is-danger" @click="logout()">
+                    Log Out
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <router-view />
     </div>
-    <router-view />
   </div>
 </template>
 
+<script>
+import { mapActions, mapState } from 'vuex';
+export default {
+  computed: mapState('auth', ['user', 'isLoggedIn']),
+  methods: mapActions('auth', ['login', 'logout'])
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.container {
+  padding: 1em;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.avatar-container {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  margin-right: 1em;
+}
+.avatar-img {
+  border-radius: 50px;
 }
 </style>

@@ -10,12 +10,12 @@ import router from '../router';
 import { mapState } from 'vuex';
 export default {
   watch: {
-    user() {
-      if (this.user) {
+    isLoggedIn() {
+      if (this.isLoggedIn) {
         router.push('/subreddits');
       }
     }
   },
-  computed: mapState('auth', ['user'])
+  computed: mapState('auth', ['isLoggedIn'])
 };
 </script>

@@ -22,6 +22,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# Linters and Prettier
-.eslintrc.js
-.prettierrc
+

@@ -18,7 +18,6 @@ firebase.auth().onAuthStateChanged(user => {
       .doc(setUser.id)
       .set(setUser);
     store.commit('auth/setUser', setUser);
-    router.push('/subreddits');
   } else {
     store.commit('auth/setUser', null);
   }

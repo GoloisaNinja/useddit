@@ -5,3 +5,17 @@
     >
   </div>
 </template>
+<script>
+import router from '../router';
+import { mapState } from 'vuex';
+export default {
+  watch: {
+    user() {
+      if (this.user) {
+        router.push('/subreddits');
+      }
+    }
+  },
+  computed: mapState('auth', ['user'])
+};
+</script>

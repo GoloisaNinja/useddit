@@ -1,6 +1,7 @@
 <template>
   <section>
-    <h1 class="subreddit-name">/{{ subreddit.name }}</h1>
+    <h4 class="subreddit-title">/{{ subreddit.name }}</h4>
+    <h2 class="subreddit-description">{{ subreddit.description }}</h2>
     <button class="button is-primary" @click="showForm = !showForm">
       Toggle Post Form
     </button>
@@ -138,7 +139,10 @@ export default {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-.subreddit-name {
+.subreddit-description {
   margin-bottom: 1em;
+}
+.subreddit-title {
+  font-size: 0.75em;
 }
 </style>

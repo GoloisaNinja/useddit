@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/#/subreddits">
           Useddit
@@ -36,9 +36,8 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-      <router-view />
-    </div>
+
+    <router-view />
   </div>
 </template>
 
@@ -51,9 +50,6 @@ export default {
 </script>
 
 <style lang="scss">
-.container {
-  padding: 1em;
-}
 .avatar-container {
   display: flex;
   align-items: center;

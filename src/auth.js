@@ -1,7 +1,6 @@
 import firebase from '@/firebase';
 import store from '@/store';
 import db from '@/db';
-import router from '@/router';
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {

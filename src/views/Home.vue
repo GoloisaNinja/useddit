@@ -6,6 +6,7 @@
           <p class="hero-text wide">
             Wecome to Useddit!
           </p>
+          <small>A community of misfits</small>
         </div>
         <div class="flex-contain">
           <img class="hero-img" src="@/assets/wizard.png" />
@@ -60,10 +61,19 @@ export default {
 }
 .welcome {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  margin: 0 auto;
   background-color: #3fccbc;
   margin-bottom: 0.25em;
+  & small {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 1em;
+    font-weight: 700;
+  }
 }
 
 .flex-contain {
@@ -108,7 +118,7 @@ export default {
     color: #fff;
     text-transform: uppercase;
     margin-top: 1em;
-    margin-bottom: 1em;
+    //margin-bottom: 1em;
   }
 }
 @media (max-width: 400px) {

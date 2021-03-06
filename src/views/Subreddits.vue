@@ -1,17 +1,21 @@
 <template>
-  <aside class="menu">
-    <p class="menu-label">
-      Useddits
-    </p>
-    <ul class="menu-list">
-      <li v-for="subreddit in subreddits" :key="subreddit.id">
-        <router-link
-          :to="{ name: 'subreddit', params: { name: subreddit.name } }"
-          >{{ subreddit.name }}</router-link
-        >
-      </li>
-    </ul>
-  </aside>
+  <section class="main-contain">
+    <div class="main-div">
+      <aside class="menu">
+        <p class="menu-label">
+          Useddits
+        </p>
+        <ul class="menu-list">
+          <li v-for="subreddit in subreddits" :key="subreddit.id">
+            <router-link
+              :to="{ name: 'subreddit', params: { name: subreddit.name } }"
+              >{{ subreddit.name }}</router-link
+            >
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -24,3 +28,8 @@ export default {
   methods: mapActions('subreddits', ['init'])
 };
 </script>
+<style lang="scss" scoped>
+.main-contain {
+  padding: 2em;
+}
+</style>

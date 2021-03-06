@@ -1,34 +1,45 @@
 <template>
   <div id="app">
-    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/#/subreddits">
-          Useddit
-        </a>
-      </div>
+    <nav
+      class="navbar is-primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="nav-helper-flex">
+        <div class="navbar-brand">
+          <img class="logo-robot" src="@/assets/harvey.png" />
+          <a class="navbar-item" href="/#/subreddits">
+            <strong><span class="branding">Useddit</span></strong>
+          </a>
+        </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <div class="login-button" v-if="!isLoggedIn">
-                <a class="button is-primary" @click="login()">
-                  <strong>Login with Google</strong>
-                </a>
-              </div>
-
-              <div class="avatar-container" v-if="isLoggedIn">
-                <div class="avatar">
-                  <span>
-                    <figure>
-                      <img class="avatar-img" :src="user.image" alt="avatar" />
-                    </figure>
-                  </span>
-                </div>
-                <div class="logout-button">
-                  <a class="button is-danger" @click="logout()">
-                    Log Out
+        <div class="flex-end">
+          <div class="navbar-start">
+            <div class="navbar-item">
+              <div class="buttons">
+                <div class="login-button" v-if="!isLoggedIn">
+                  <a class="button is-warning" @click="login()">
+                    <strong>Google Login</strong>
                   </a>
+                </div>
+
+                <div class="avatar-container" v-if="isLoggedIn">
+                  <div class="avatar">
+                    <span>
+                      <figure>
+                        <img
+                          class="avatar-img"
+                          :src="user.image"
+                          alt="avatar"
+                        />
+                      </figure>
+                    </span>
+                  </div>
+                  <div class="logout-button">
+                    <a class="button is-danger" @click="logout()">
+                      Log Out
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -36,8 +47,9 @@
         </div>
       </div>
     </nav>
-
-    <router-view />
+    <div class="main-contain">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -59,5 +71,21 @@ export default {
 }
 .avatar-img {
   border-radius: 50px;
+}
+.nav-helper-flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-robot {
+  margin-top: 0.5em;
+  margin-left: 0.35em;
+  height: 35px;
+  width: 35px;
+}
+.branding {
+  //color: #3fccbc;
+  letter-spacing: 5px;
 }
 </style>

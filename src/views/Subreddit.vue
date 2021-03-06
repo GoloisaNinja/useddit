@@ -206,7 +206,7 @@ export default {
   height: 100%;
   margin: 1%;
   border-radius: 5px;
-  background-color: lighten(#3fccbc, 45%);
+  background-color: #f5f5f5;
 }
 .avatar {
   border-radius: 50px;

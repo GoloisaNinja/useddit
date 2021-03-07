@@ -176,9 +176,13 @@ export default {
         }
         return Math.floor(seconds) + ' seconds';
       }
-      return timeSince(this.posts[index].created_at.seconds * 1000) < 0
-        ? '0 seconds ago'
-        : `${timeSince(this.posts[index].created_at.seconds * 1000)} ago`;
+      if (this.posts[index].created_at === null) {
+        return '0 seconds ago';
+      } else {
+        return timeSince(this.posts[index].created_at.seconds * 1000) < 0
+          ? '0 seconds ago'
+          : `${timeSince(this.posts[index].created_at.seconds * 1000)} ago`;
+      }
     }
   }
 };

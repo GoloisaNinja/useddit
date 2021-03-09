@@ -30,6 +30,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main-contain {
-  padding: 2em;
+  padding: 1em;
 }
 </style>

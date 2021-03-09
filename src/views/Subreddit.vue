@@ -3,7 +3,7 @@
     <h4 class="subreddit-title">/{{ subreddit.name }}</h4>
     <h2 class="subreddit-description">{{ subreddit.description }}</h2>
     <button
-      class="button is-warning"
+      class="button is-warning is-rounded"
       v-if="isLoggedIn"
       @click="showForm = !showForm"
     >
@@ -43,15 +43,29 @@
           />
         </div>
       </div>
-
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-success">Add Post</button>
+          <button class="button is-success is-rounded">
+            Add Post
+          </button>
         </div>
       </div>
     </form>
+    <form class="search-term">
+      <label class="label">Search for Post</label>
+      <input
+        class="input"
+        type="text"
+        placeholder="Search post"
+        v-model="searchTerm"
+      />
+    </form>
     <div class="posts columns is-multiline">
-      <div class="column is-4" v-for="(post, index) in posts" :key="post.id">
+      <div
+        class="column is-4"
+        v-for="(post, index) in filteredPosts"
+        :key="post.id"
+      >
         <div class="card">
           <div class="card-image" v-if="isImage(post.URL)">
             <figure class="image">
@@ -79,12 +93,18 @@
                 </p>
               </div>
             </div>
-
-            <div class="content">
-              {{ post.description }}
-              <br />
-              <time class="timecode">{{ getCreated(index) }}</time>
-            </div>
+            <router-link
+              :to="{
+                name: 'post',
+                params: { name: $route.params.name, post_id: post.id }
+              }"
+            >
+              <div class="content">
+                {{ post.description }}
+                <br />
+                <time class="timecode">{{ getCreated(index) }}</time>
+              </div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -97,6 +117,7 @@ import { mapActions, mapState, mapGetters } from 'vuex';
 export default {
   data: () => ({
     showForm: false,
+    searchTerm: '',
     post: {
       title: '',
       description: '',
@@ -124,6 +145,15 @@ export default {
       subreddit: 'subreddit/subreddit',
       userById: 'users/userById'
     }),
+    filteredPosts() {
+      if (this.searchTerm) {
+        const regex = new RegExp(this.searchTerm, 'gi');
+        return this.posts.filter(post =>
+          (post.title + post.description).match(regex)
+        );
+      }
+      return this.posts;
+    },
     loadedUserById() {
       return this.posts.reduce((byId, post) => {
         byId[post.user_id] = this.userById[post.user_id] || {
@@ -189,7 +219,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main-contain {
-  padding: 1.5em;
+  padding: 1em;
 }
 .posts {
   margin: 0 auto;
@@ -206,6 +236,9 @@ export default {
   font-size: 0.75em;
   margin-bottom: 0.5em;
 }
+.search-term {
+  margin-top: 2em;
+}
 .card {
   height: 100%;
   margin: 1%;
@@ -217,5 +250,8 @@ export default {
 }
 .timecode {
   font-size: 0.75em;
+}
+.post-link {
+  text-align: center;
 }
 </style>

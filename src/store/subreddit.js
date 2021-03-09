@@ -22,7 +22,7 @@ const actions = {
     post.created_at = firebase.firestore.FieldValue.serverTimestamp();
     post.updated_at = firebase.firestore.FieldValue.serverTimestamp();
     try {
-      const created = await posts.doc(post.id).set(post);
+      await posts.doc(post.id).set(post);
     } catch (error) {
       console.error(error);
     }

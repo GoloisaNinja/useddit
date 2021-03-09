@@ -18,7 +18,7 @@
             <div class="navbar-item">
               <div class="buttons">
                 <div class="login-button" v-if="!isLoggedIn">
-                  <a class="button is-warning" @click="login()">
+                  <a class="button is-warning is-rounded" @click="login()">
                     <strong>Google Login</strong>
                   </a>
                 </div>
@@ -36,7 +36,7 @@
                     </span>
                   </div>
                   <div class="logout-button">
-                    <a class="button is-danger" @click="logout()">
+                    <a class="button is-danger is-rounded" @click="logout()">
                       Log Out
                     </a>
                   </div>

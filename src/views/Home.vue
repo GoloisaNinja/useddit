@@ -6,19 +6,19 @@
           <p class="hero-text wide">
             Wecome to Useddit!
           </p>
-          <small>A community of misfits</small>
+          <small>A community for misfits by misfits</small>
         </div>
         <div class="flex-contain">
           <img class="hero-img" src="@/assets/wizard.png" />
           <p class="hero-text">
             "Useddit gave me a community to post my stupid pics AND post my
-            ideas about chicken wizards!" - actual user
+            ideas about city wizards!" - actual user
           </p>
         </div>
         <div class="flex-contain">
           <p class="hero-text">
             "The setup was soooo easy. I think it's because there was nothing to
-            install and I literally never even used it." - actual user
+            install and I literally never even tried it." - actual nonuser
           </p>
           <img class="hero-img" src="@/assets/programming.png" />
         </div>
@@ -33,7 +33,9 @@
               that!" - actual user
             </p>
           </div>
-          <router-link class="button is-danger" :to="{ name: 'subreddits' }"
+          <router-link
+            class="button is-danger is-rounded"
+            :to="{ name: 'subreddits' }"
             >Browse Useddits</router-link
           >
         </div>

@@ -10,7 +10,12 @@ const state = {
 };
 
 const getters = {
-  subreddit: state => (state.subreddits[0] ? state.subreddits[0] : {})
+  subreddit: state => (state.subreddits[0] ? state.subreddits[0] : {}),
+  sortedPosts: state => {
+    return Object.values(state.posts).sort((a, b) => {
+      return a.created_at < b.created_at ? 1 : -1;
+    });
+  }
 };
 
 const actions = {

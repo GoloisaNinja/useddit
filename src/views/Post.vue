@@ -34,12 +34,17 @@
     >
       Toggle Comment Form
     </button>
-    <form class="comment-form" v-if="showForm">
+    <form
+      class="comment-form"
+      v-if="showForm"
+      @submit.prevent="onCreateComment()"
+    >
       <div class="field">
         <label class="label">Comment</label>
         <div class="control">
           <textarea
             class="textarea"
+            required
             placeholder="Add your comment"
             v-model="comment.description"
           />
@@ -51,6 +56,30 @@
         </div>
       </div>
     </form>
+    <div class="comment-separator">
+      <p class="sep-text">Comment Section</p>
+    </div>
+    <article class="post media" v-for="comment in comments" :key="comment.id">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <img
+            class="avatar"
+            :src="loadCommentUser[comment.user_id].image"
+            alt="Placeholder image"
+          />
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>{{ loadCommentUser[comment.user_id].name }}</strong>
+            <br />
+            {{ comment.description }}
+            <br />
+          </p>
+        </div>
+      </div>
+    </article>
   </section>
 </template>
 
@@ -64,15 +93,21 @@ export default {
     }
   }),
   mounted() {
+    this.scrollToTop();
     this.initPost(this.$route.params.post_id);
   },
   watch: {
     '$route.params.post_id'() {
       this.initPost(this.$route.params.post_id);
+    },
+    clickedPost() {
+      if (this.clickedPost.id) {
+        this.initComments(this.$route.params.post_id);
+      }
     }
   },
   computed: {
-    ...mapState('post', ['post']),
+    ...mapState('post', ['post', 'comments']),
     ...mapState('auth', ['isLoggedIn']),
     ...mapGetters({
       clickedPost: 'post/clickedPost',
@@ -85,27 +120,68 @@ export default {
           image: 'https://bulma.io/images/placeholders/48x48.png'
         }
       );
+    },
+    loadCommentUser() {
+      return this.comments.reduce((byId, comment) => {
+        byId[comment.user_id] = this.userById[comment.user_id] || {
+          name: 'Loading...',
+          image: 'https://bulma.io/images/placeholders/48x48.png'
+        };
+        return byId;
+      }, {});
     }
   },
   methods: {
-    ...mapActions('post', ['initPost'])
+    scrollToTop() {
+      window.scroll(0, 0);
+      return null;
+    },
+    ...mapActions('post', ['initPost', 'initComments', 'createComment']),
+    async onCreateComment() {
+      if (this.comment.description) {
+        this.createComment(this.comment);
+        this.comment = {
+          description: ''
+        };
+        this.showForm = false;
+      }
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
 .main-contain {
-  padding: 1em;
+  min-height: 100vh;
+  padding: 1.25em;
 }
 .post {
   margin-top: 1.25em;
   margin-bottom: 1.25em;
   background-color: #f5f5f5;
   padding: 1em;
+  border-radius: 5px;
 }
 .avatar {
   border-radius: 50px;
 }
 .comment-form {
   margin-top: 1.25em;
+}
+.comment-separator {
+  display: flex;
+  border-radius: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 1.25em;
+  color: #fff;
+  background-color: #3fccbc;
+  margin-bottom: 0.25em;
+}
+.sep-text {
+  font-weight: 700;
+  text-transform: uppercase;
 }
 </style>

@@ -11,7 +11,11 @@ const state = {
 };
 
 const getters = {
-  clickedPost: state => (state.post[0] ? state.post[0] : {})
+  clickedPost: state => (state.post[0] ? state.post[0] : {}),
+  sortedComments: state =>
+    Object.values(state.comments).sort((a, b) => {
+      return a.created_at < b.created_at ? 1 : -1;
+    })
 };
 
 const actions = {

@@ -59,7 +59,11 @@
     <div class="comment-separator">
       <p class="sep-text">Comment Section</p>
     </div>
-    <article class="post media" v-for="comment in comments" :key="comment.id">
+    <article
+      class="post media"
+      v-for="comment in sortedComments"
+      :key="comment.id"
+    >
       <figure class="media-left">
         <p class="image is-64x64">
           <img
@@ -109,10 +113,11 @@ export default {
     }
   },
   computed: {
-    ...mapState('post', ['post', 'comments']),
+    //...mapState('post', ['post', 'comments']),
     ...mapState('auth', ['isLoggedIn']),
     ...mapGetters({
       clickedPost: 'post/clickedPost',
+      sortedComments: 'post/sortedComments',
       userById: 'users/userById'
     }),
     loadPostUser() {
@@ -124,7 +129,7 @@ export default {
       );
     },
     loadCommentUser() {
-      return this.comments.reduce((byId, comment) => {
+      return this.sortedComments.reduce((byId, comment) => {
         byId[comment.user_id] = this.userById[comment.user_id] || {
           name: 'Loading...',
           image: 'https://bulma.io/images/placeholders/48x48.png'

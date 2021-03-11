@@ -5,7 +5,9 @@
         back to menu
       </button></router-link
     >
-    <h4 class="subreddit-title">/{{ subreddit.name }}</h4>
+    <h4 class="subreddit-title">
+      /{{ subreddit.name }} : click post for comments
+    </h4>
     <h2 class="subreddit-description">{{ subreddit.description }}</h2>
     <button
       class="button is-warning is-rounded"
@@ -94,7 +96,9 @@
               <div class="media-content">
                 <p class="title is-4" v-if="!post.URL">{{ post.title }}</p>
                 <p class="title is-4" v-if="post.URL">
-                  <a :href="post.URL" target="_blank">{{ post.title }}</a>
+                  <a class="post-link" :href="post.URL" target="_blank">{{
+                    post.title
+                  }}</a>
                 </p>
                 <p class="subtitle is-6">
                   {{ loadedUserById[post.user_id].name }}
@@ -254,7 +258,22 @@ export default {
 .main-contain {
   min-height: 100vh;
   padding: 1.25em;
+  background-color: var(--bg-color-primary);
+  color: var(--text-color-secondary);
 }
+.label {
+  color: var(--text-color-primary);
+}
+.input,
+.textarea {
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-secondary);
+  border-color: var(--bg-color-primary);
+  &::placeholder {
+    color: var(--text-color-secondary);
+  }
+}
+
 .posts {
   margin: 0 auto;
   margin-top: 1em;
@@ -274,12 +293,24 @@ export default {
 .search-term {
   margin-top: 2em;
 }
+.post-link:hover {
+  color: #3fccbc;
+}
 .card {
   height: 100%;
   margin: 1%;
   border-radius: 5px;
-  background-color: #f5f5f5;
+  background-color: var(--bg-color-secondary);
   word-break: break-word;
+}
+.title {
+  color: var(--text-color-primary);
+}
+.subtitle {
+  color: var(--text-color-secondary);
+}
+.content {
+  color: var(--text-color-secondary);
 }
 .avatar {
   border-radius: 50px;

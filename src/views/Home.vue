@@ -3,6 +3,8 @@
     <section class="section-one">
       <div class="group first">
         <div class="welcome">
+          <img class="arrow" src="@/assets/curve-arrow.png" alt="arrow" />
+          <small class="theme-notice">tap robot to change theme!</small>
           <p class="hero-text wide">
             Wecome to Useddit!
           </p>
@@ -27,7 +29,7 @@
         <div class="group second">
           <div class="flex-contain">
             <img class="hero-img" src="@/assets/smartphone.png" />
-            <p class="hero-text">
+            <p class="hero-text dark">
               "It's amazing all the stuff you can't do with Useddit. It's almost
               like the jerks that made it didn't want me to use it. And I love
               that!" - actual user
@@ -63,6 +65,7 @@ export default {
 }
 .welcome {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -77,7 +80,19 @@ export default {
     font-weight: 700;
   }
 }
-
+.arrow {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 18px;
+}
+.theme-notice {
+  position: absolute;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  top: 5px;
+  left: 55px;
+}
 .flex-contain {
   display: flex;
   justify-content: space-around;
@@ -94,11 +109,11 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
-  background-color: #ededed;
+  color: var(--text-color-secondary);
+  background-color: var(--bg-color-primary);
   &.second {
-    background-color: blue;
-    color: #fff;
+    background-color: #0000e0;
+    color: var(--text-color-secondary);
     padding-bottom: 1.2em;
   }
 }
@@ -112,6 +127,9 @@ export default {
   width: 40%;
   font-size: 1.2em;
   font-weight: 500;
+  &.dark {
+    color: var(--text-color-light);
+  }
   &.wide {
     width: 90%;
     font-size: 1.4em;

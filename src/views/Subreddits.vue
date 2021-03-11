@@ -1,6 +1,8 @@
 <template>
   <section>
     <div class="disclaimer">
+      <img class="arrow" src="@/assets/curve-arrow.png" alt="arrow" />
+      <small class="theme-notice">tap robot to change theme!</small>
       <p class="lead-text">Browse as Visitor</p>
       <small>Login to contribute - Purple text is clickable!</small>
     </div>
@@ -42,6 +44,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+section {
+  background-color: var(--bg-color-primary);
+}
+.menu-label {
+  color: var(--menu-label-color-primary);
+}
+.menu-list a {
+  color: var(--text-color-primary);
+  &:hover {
+    color: var(--text-color-secondary);
+    background-color: var(--bg-color-secondary);
+  }
+}
 .main-contain {
   min-height: 100vh;
   padding: 1.25em;
@@ -49,6 +64,7 @@ export default {
 .disclaimer {
   display: flex;
   flex-direction: column;
+  position: relative;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -62,6 +78,19 @@ export default {
     margin-bottom: 1em;
     font-weight: 700;
   }
+}
+.arrow {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 18px;
+}
+.theme-notice {
+  position: absolute;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  top: 5px;
+  left: 55px;
 }
 .lead-text {
   font-size: 1.4em;

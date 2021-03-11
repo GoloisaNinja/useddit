@@ -8,9 +8,17 @@
       >
         <div class="nav-helper-flex">
           <div class="navbar-brand">
-            <router-link :to="{ name: 'Home' }"
+            <!-- <router-link :to="{ name: 'Home' }"
               ><img class="logo-robot" src="@/assets/harvey.png"
-            /></router-link>
+            /></router-link> -->
+            <button class="theme-button" @click="light = !light">
+              <img class="logo-robot" v-if="light" src="@/assets/harvey.png" />
+              <img
+                class="logo-robot"
+                v-if="!light"
+                src="@/assets/darkharvey.png"
+              />
+            </button>
             <a class="navbar-item" href="/#/subreddits">
               <strong><span class="branding">Useddit</span></strong>
             </a>
@@ -101,7 +109,10 @@
       <div class="footer-last">
         <p>
           Useddit was created by
-          <span class="green-span">Jon Collins</span> copyright
+          <a href="https://joncollins-dev.netlify.app"
+            ><span class="green-span">Jon Collins</span></a
+          >
+          copyright
           {{ footerDate() }}
         </p>
       </div>
@@ -112,8 +123,16 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 export default {
+  data: () => ({
+    light: true
+  }),
   mounted() {
     this.scrollToTop();
+  },
+  watch: {
+    light() {
+      this.setTheme(this.light);
+    }
   },
   computed: mapState('auth', ['user', 'isLoggedIn']),
   methods: {
@@ -125,12 +144,42 @@ export default {
     scrollToTop() {
       window.scroll(0, 0);
       return null;
+    },
+    setTheme(theme) {
+      const page = document.getElementById('main-html');
+      if (theme) {
+        page.className = 'theme-light';
+      } else {
+        page.className = 'theme-dark';
+      }
     }
   }
 };
 </script>
 
 <style lang="scss">
+.theme-light {
+  --bg-color-primary: #fff;
+  --bg-color-secondary: #f5f5f5;
+  --text-color-primary: #4a4a4a;
+  --text-color-secondary: #7a7a7a;
+  --text-color-light: #e3e3e3;
+  --menu-label-color-primary: #7a7a7a;
+}
+.theme-dark {
+  --bg-color-primary: #2c3747;
+  --bg-color-secondary: #3a485e;
+  --text-color-primary: #ededed;
+  --text-color-secondary: #e6e6e6;
+  --text-color-light: #e3e3e3;
+  --menu-label-color-primary: #fafafa;
+}
+.theme-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
 .green-span {
   color: #3fccbc;
 }

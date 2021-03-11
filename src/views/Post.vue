@@ -19,7 +19,7 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <strong>{{ clickedPost.title }}</strong>
+            <span class="post-name">{{ clickedPost.title }}</span>
             <br />
             {{ clickedPost.description }}
             <br />
@@ -72,7 +72,9 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <strong>{{ loadCommentUser[comment.user_id].name }}</strong>
+            <span class="post-name">{{
+              loadCommentUser[comment.user_id].name
+            }}</span>
             <br />
             {{ comment.description }}
             <br />
@@ -150,16 +152,37 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+section {
+  background-color: var(--bg-color-primary);
+}
 .main-contain {
   min-height: 100vh;
   padding: 1.25em;
 }
+.media + .media {
+  border-top: none;
+}
+.label {
+  color: var(--text-color-primary);
+}
+.textarea {
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-secondary);
+  border-color: var(--bg-color-primary);
+  &::placeholder {
+    color: var(--text-color-secondary);
+  }
+}
 .post {
   margin-top: 1.25em;
   margin-bottom: 1.25em;
-  background-color: #f5f5f5;
+  background-color: var(--bg-color-secondary);
   padding: 1em;
   border-radius: 5px;
+  color: var(--text-color-primary);
+}
+.post-name {
+  font-weight: 700;
 }
 .avatar {
   border-radius: 50px;

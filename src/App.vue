@@ -68,16 +68,8 @@
                       </span>
                     </div>
                     <div class="logout-button">
-                      <a
-                        class="my button is-danger is-rounded"
-                        @click="logout()"
-                      >
-                        <span
-                          ><img
-                            class="logout-img"
-                            src="@/assets/logout.png"
-                            alt="logout"
-                        /></span>
+                      <a class="button is-danger is-rounded" @click="logout()">
+                        <strong>Logout</strong>
                       </a>
                     </div>
                   </div>
@@ -218,11 +210,6 @@ export default {
   border: none;
   cursor: pointer;
   outline: none;
-}
-.my.button.is-danger.is-rounded {
-  background: none;
-  padding: 0;
-  margin: 0;
 }
 .my.button.is-success.is-rounded {
   padding-left: 0.75em;

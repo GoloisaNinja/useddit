@@ -3,8 +3,6 @@
     <section class="section-one">
       <div class="group first">
         <div class="welcome">
-          <img class="arrow" src="@/assets/curve-arrow.png" alt="arrow" />
-          <small class="theme-notice">tap robot to change theme!</small>
           <p class="hero-text wide">
             Wecome to Useddit!
           </p>
@@ -80,19 +78,7 @@ export default {
     font-weight: 700;
   }
 }
-.arrow {
-  position: absolute;
-  top: 0;
-  left: 30px;
-  width: 18px;
-}
-.theme-notice {
-  position: absolute;
-  font-size: 0.75em;
-  text-transform: uppercase;
-  top: 5px;
-  left: 55px;
-}
+
 .flex-contain {
   display: flex;
   justify-content: space-around;
@@ -137,7 +123,7 @@ export default {
     text-align: center;
     color: #fff;
     text-transform: uppercase;
-    margin-top: 1em;
+    margin-top: 0.5em;
     //margin-bottom: 1em;
   }
 }

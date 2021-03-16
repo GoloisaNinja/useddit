@@ -1,8 +1,6 @@
 <template>
   <section>
     <div class="disclaimer">
-      <img class="arrow" src="@/assets/curve-arrow.png" alt="arrow" />
-      <small class="theme-notice">tap robot to change theme!</small>
       <p class="lead-text">Browse as Visitor</p>
       <small>Login to contribute - Purple text is clickable!</small>
     </div>
@@ -79,25 +77,12 @@ section {
     font-weight: 700;
   }
 }
-.arrow {
-  position: absolute;
-  top: 0;
-  left: 30px;
-  width: 18px;
-}
-.theme-notice {
-  position: absolute;
-  font-size: 0.75em;
-  text-transform: uppercase;
-  top: 5px;
-  left: 55px;
-}
 .lead-text {
   font-size: 1.4em;
   font-weight: 700;
   text-align: center;
   color: #fff;
   text-transform: uppercase;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 </style>

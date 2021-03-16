@@ -11,14 +11,14 @@
             <!-- <router-link :to="{ name: 'Home' }"
               ><img class="logo-robot" src="@/assets/harvey.png"
             /></router-link> -->
-            <button class="theme-button" @click="light = !light">
-              <img class="logo-robot" v-if="light" src="@/assets/harvey.png" />
+            <router-link :to="{ name: 'Home' }">
+              <img class="logo-robot" v-if="light" src="@/assets/harvey.png"/>
               <img
                 class="logo-robot"
                 v-if="!light"
                 src="@/assets/darkharvey.png"
-              />
-            </button>
+            /></router-link>
+
             <a class="navbar-item" href="/#/subreddits">
               <strong><span class="branding">Useddit</span></strong>
             </a>
@@ -28,9 +28,30 @@
             <div class="navbar-start">
               <div class="navbar-item">
                 <div class="buttons">
+                  <div class="theme">
+                    <button class="theme-button" @click="light = !light">
+                      <img
+                        v-if="light"
+                        class="theme-img"
+                        src="@/assets/sun.png"
+                        alt="sun image"
+                      />
+                      <img
+                        v-if="!light"
+                        class="theme-img"
+                        src="@/assets/moon-phase.png"
+                        alt="sun image"
+                      />
+                    </button>
+                  </div>
                   <div class="login-button" v-if="!isLoggedIn">
-                    <a class="button is-warning is-rounded" @click="login()">
-                      <strong>Google Login</strong>
+                    <a class="my button is-success is-rounded" @click="login()">
+                      <span
+                        ><img
+                          class="gLogo"
+                          src="@/assets/gLogo.png"
+                          alt="google"/></span
+                      ><strong>Login</strong>
                     </a>
                   </div>
 
@@ -47,8 +68,16 @@
                       </span>
                     </div>
                     <div class="logout-button">
-                      <a class="button is-danger is-rounded" @click="logout()">
-                        Log Out
+                      <a
+                        class="my button is-danger is-rounded"
+                        @click="logout()"
+                      >
+                        <span
+                          ><img
+                            class="logout-img"
+                            src="@/assets/logout.png"
+                            alt="logout"
+                        /></span>
                       </a>
                     </div>
                   </div>
@@ -128,6 +157,7 @@ export default {
   }),
   mounted() {
     this.scrollToTop();
+    this.checkForTheme();
   },
   watch: {
     light() {
@@ -145,12 +175,21 @@ export default {
       window.scroll(0, 0);
       return null;
     },
+    checkForTheme() {
+      if (localStorage.getItem('theme') === 'dark') {
+        this.light = false;
+      } else {
+        this.light = true;
+      }
+    },
     setTheme(theme) {
       const page = document.getElementById('main-html');
       if (theme) {
         page.className = 'theme-light';
+        localStorage.setItem('theme', 'light');
       } else {
         page.className = 'theme-dark';
+        localStorage.setItem('theme', 'dark');
       }
     }
   }
@@ -179,6 +218,25 @@ export default {
   border: none;
   cursor: pointer;
   outline: none;
+}
+.my.button.is-danger.is-rounded {
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+.my.button.is-success.is-rounded {
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  background-color: #28afbb;
+  transition: all 1s ease-in-out;
+  &:hover {
+    background-color: lighten(#28afbb, 20%);
+  }
+}
+.gLogo {
+  width: 25px;
+  margin-right: 0.35em;
+  margin-top: 0.25em;
 }
 .green-span {
   color: #3fccbc;
@@ -239,6 +297,10 @@ div.footer-list:not(:last-child) {
 }
 .avatar-img {
   border-radius: 50px;
+}
+.theme-img {
+  margin-right: 0em;
+  margin-bottom: 0.14em;
 }
 .nav-helper-flex {
   width: 100%;

@@ -287,7 +287,7 @@ div.footer-list:not(:last-child) {
 }
 .theme-img {
   margin-right: 0em;
-  margin-bottom: 0.14em;
+  margin-bottom: 0.12em;
 }
 .nav-helper-flex {
   width: 100%;
